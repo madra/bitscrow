@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="transactions">
+
+<table class="table">
+              <thead>
+                <tr>
+                  <th>#No</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Reason</th>
+                  <th>Status</th>
+                <!--
+                  <th>#No</th>
+                  <th>My Role</th>
+                  <th>Buyer Email</th>
+                  <th>Seller Email</th>
+                  <th>Amount</th>
+                  <th>Description</th>
+                  <th>Document Required</th>
+                  -->
+                </tr>
+              </thead>
+              <tbody>
+                   {% for t in transactions %}
+                  <tr>
+                  <td><a href="{{t.get_unique_url}}">{{t.get_invoice_number}}</a></td>
+                  <td>{{t.added}}</td>
+                  <!--
+                  <td>
+                  {%if t.is_sender%}
+                  Sender
+                  {% else %}
+                  Buyer
+                  {%endif%}
+                  </td>
+                  <td>{{t.buyer}}</td>
+                  <td>{{t.sender}}</td>
+                  -->
+                  <td>{{t.amount}} {{t.currency}}</td>
+                  <td>{{t.condition_description}}</td>
+                  <td>{{t.get_status}}</td>
+                </tr>
+
+                    {% endfor %}
+
+
+
+              </tbody>
+            </table>
+  
+<ul class="pagination">
+        {% if transactions.has_previous %}
+            <li><a href="?page={{ transactions.previous_page_number }}">«</a></li>
+        {% endif %}
+
+        <li class="disabled">
+            <a>Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.</a>
+        </li>
+
+        {% if transactions.has_next %}
+            <li><a href="?page={{ transactions.next_page_number }}">»</a></li>
+        {% endif %}
+</ul>
+
+
+
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+ecdsa
+PyOpenSSL
+django-bootstrap3
+django-mptt
+django-notification
+django-session-security
+coverage
+django-suit
+South
+django-userena
+django-guardian
+django-mailgun

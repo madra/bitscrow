@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class="row escrowform">
+
+
+
+  {% csrf_token %}
+<div class="page-header">
+<h3>File a Complaint</h3>
+</div>
+ 
+ <div class="col-xs-12 col-md-10">
+
+{{errors}}
+   <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Select Escrow</label>
+    <div class="col-sm-10">
+      <select type="email" id="complaint_link" class="form-control" name="complaint_link" placeholder="i am" required="required">
+      {% for t in transactions %}
+      <option value={{ t.get_unique_url }}complaint>#{{t.get_invoice_number}}</option>
+      {% endfor %}
+      </select>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label"></label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary" onclick=loadComplaint()>Submit Complaint</button>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,151 @@
+.landingpage_wrapper{
+	margin-top: 65px;
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.escrowform label{
+margin-bottom: 10px !important;
+}
+
+@media (min-width: 768px){
+.escrowform  .col-sm-10 {
+width: 78.333333%;
+}
+}
+
+
+.errorlist{
+color: red;
+}
+
+
+.transactions{
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.transaction{
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.transaction hr {
+margin-top: 1px !important;
+margin-bottom: 1px !important;
+}
+
+.transaction .page-header {
+padding-bottom: 1px !important;
+margin: 0px !important;
+border-bottom: 1px solid #eeeeee;
+}
+
+.transaction span{
+	line-height: 40px;
+}
+
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.alert-error hr {
+  border-top-color: #e6c1c7;
+}
+
+.alert-error .alert-link {
+  color: #953b39;
+}
+
+
+.footer .content .copyright {
+display: none !important;
+}
+
+
+.leftside{
+text-align: right;
+}
+
+
+.password_wrapper{
+	width: 100%;
+}
+
+
+.password_wrapper .form-group{
+	width: 45%;
+	float: left;
+}
+
+.signupform{
+	width: 50%;
+}
+
+.signup_banner{
+	margin-top: 10px;
+	border-bottom: 1px solid #eeeeee;
+	border-top: 1px solid #eeeeee;
+	display: block;
+	overflow: hidden;
+	padding: 5px;
+}
+
+.signup_banner h1{
+	margin-top: 1px !important;
+}
+
+.logo{
+	width: 106px
+}
+
+
+.additional_escrow_options .form-group {
+margin-bottom: 1px !important;
+}
+
+.additional_escrow_options  hr {
+margin-bottom: 0px !important;
+}
+
+.additional_escrow_options .page-header {
+padding-bottom: 1px !important;
+margin: 0px !important;
+border-bottom: 1px solid #eeeeee;
+}
+
+.who_pays_options .radio{
+padding: 5px;
+border: 1px solid #000;
+margin-left: 10px;
+}
+
+
+.second_navbar{
+background: #d5dad4;
+position: fixed;
+right: 0;
+left: 0;
+z-index: 1030;
+margin-bottom: 0;
+top: 40px;
+-webkit-box-shadow: 0px 1px 1px #cccccc;
+-moz-box-shadow: 0px 1px 1px #cccccc;
+box-shadow: 0px 1px 1px #cccccc;
+padding-right:5%; 
+padding-left:0%;
+}
+
+.second_navbar a {
+color: #000 !important;
+}
+
+.second_navbar a:hover {
+text-decoration: underline !important;
+}

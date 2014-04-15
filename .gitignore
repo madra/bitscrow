@@ -1,0 +1,6 @@
+*.sh
+*.db
+*.DS_Store
+*.py[cod]
+wsgi.py
+local_settings.py

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "Signin" %}{% endblock %}
+
+{% block content %}
+<div class="signupform">
+<form action="" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend>Signin</legend>
+    
+    
+    {{ form.errors }}
+    
+    
+    <div class="form-group">
+    <input class="required form-control" id="id_identification" maxlength="75" name="identification" type="text" placeholder="Email">
+    </div>
+    
+    
+    
+    
+    
+    <div class="form-group">
+    <input class="required form-control" id="id_password" name="password" type="password" placeholder="Password">
+    </div>
+    
+    
+    
+    
+    <!--
+    <p class="checkbox">
+    <label for="id_remember_me"><input id="id_remember_me" name="remember_me" type="checkbox"> Remember me for a month</label>
+    </p>
+    -->
+    
+  </fieldset>
+  <input type="submit" value="Signin" class="btn btn-primary form-control">
+  <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="Forgot your password?">Forgot your password?</a></p>
+  
+</form>
+</div>
+
+<!--
+<form action="" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend>{% trans "Signin" %}</legend>
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    {{ field.errors }}
+    {% comment %} Displaying checkboxes differently {% endcomment %}
+    {% if field.name == 'remember_me' %}
+    <p class="checkbox">
+    <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+    </p>
+    {% else %}
+    <p>
+    {{ field.label_tag }}
+    {{ field }}
+    </p>
+    {% endif %}
+    {% endfor %}
+  </fieldset>
+  <input type="submit" value="{% trans "Signin" %}" />
+  <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
+  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+</form>
+-->
+{% endblock %}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<link rel="SHORTCUT ICON" href="{{STATIC_URL}}images/fav.ico">
+<title>Escrowcoins | {% block title %}{% endblock %}</title>
+
+<link href="{{STATIC_URL}}css/bootstrap3.css" media="screen" rel="stylesheet" type="text/css" /> 
+<link href="{{STATIC_URL}}css/escrowcoins.css" media="screen" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/escrowcoins.js"></script>
+
+
+<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+</head>
+<body>
+
+
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="{{BASE_URL}}" class="navbar-brand">
+        <img src="{{STATIC_URL}}images/logo.png" class="logo">
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      {% if LOGGED_IN %}
+
+        <ul class="nav navbar-nav navbar-left" style="margin-left:40px;">
+      
+      <!--
+      <li class="active" >
+          <a href="{{BASE_URL}}">Start Escrow Now</a>
+        </li>
+      -->
+        </ul>
+      
+
+      <ul class="nav navbar-nav navbar-right">
+    
+        <li>
+          <a href="{{BASE_URL}}transactions">My Transactions</a>
+        </li>
+
+         <li>
+          <a href="{{BASE_URL}}">New Transaction</a>
+        </li>
+
+        <!--
+         <li>
+          <a href="{{BASE_URL}}complaint">File complaint</a>
+        </li>
+        -->
+
+           <li>
+          <a href="{{BASE_URL}}accounts/{{request.user.username}}">My Profile</a>
+        </li>
+
+        </ul>
+        {% else %}
+         <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{{BASE_URL}}accounts/signin">Login</a>
+        </li>
+         <li>
+          <a href="{{BASE_URL}}accounts/signup">Signup</a>
+        </li>
+        
+      </ul>
+      {% endif %}
+
+    </nav>
+
+{% if LOGGED_IN %}
+
+<style type="text/css">
+  .landingpage_wrapper {
+margin-top: 113px;
+}
+</style>
+
+<nav class="collapse navbar-collapse bs-navbar-collapse second_navbar" role="navigation">
+  <ul class="nav navbar-nav navbar-left" style="margin-left:40px;">
+      
+   
+      <li><a href="#">{{secondbar_notice}}</a></li>
+      
+
+        </ul>
+      
+
+      <ul class="nav navbar-nav navbar-right">
+    
+          <li>
+          <a href="#">Logged in as: {{request.user.username}} {{request.user.email}}</a>
+        </li>
+
+        <!--
+        <li>
+          <a href="{{BASE_URL}}transactions">My Transactions</a>
+        </li>
+
+         <li>
+          <a href="{{BASE_URL}}">New Transaction</a>
+        </li>
+
+         <li>
+          <a href="{{BASE_URL}}complaint">File complaint</a>
+        </li>
+
+           <li>
+          <a href="{{BASE_URL}}accounts/{{request.user.username}}">My Profile</a>
+        </li>
+        -->
+
+        <li>
+          <a href="{{BASE_URL}}accounts/signout">Sign Out</a>
+        </li>
+        </ul>
+</nav>
+{% endif %}
+  
+
+  </div>
+</header>
+
+<div class="container landingpage_wrapper">
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} notification" >
+<button type="button" class="close" data-dismiss="alert">×</button>
+{{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+
+<!--messages-->
+{%if message.success%}
+<div class="alert alert-success notification" >
+<button type="button" class="close" data-dismiss="alert">×</button>
+{{message.message}}
+</div>
+{%endif%}
+
+
+{%if message.error%}
+<div class="alert alert alert-error notification" >
+<button type="button" class="close" data-dismiss="alert">×</button>
+{{message.message}}
+</div>
+{%endif%}
+
+ {% if not LOGGED_IN %}
+
+<div class="page-header">
+      <h3 id="template">The Most Secure Bitcoin and Litecoin Escrow Service</h3>
+    </div>
+ {%endif %}
+
+
+{% block content %}
+
+
+
+{% endblock %}
+</div>
+
+
+    <script>
+
+      $(document).ready(function(){   
+
+       $("[rel=tooltip]").tooltip();
+        $("#nav ul li a[href^='#']").on('click', function(e) {
+          // prevent default anchor click behavior
+          e.preventDefault();
+            // store hash
+           var hash = this.hash;
+           // animate
+           $('html, body').animate({
+               scrollTop: $(this.hash).offset().top
+             }, 300, function(){
+
+               // when done, add hash to url
+               // (default click behaviour)
+               window.location.hash = hash;
+             });
+
+        });
+
+      });
+
+    </script>
+
+
+<!-- Google Analytics -->
+{% if DEBUG == False %}
+{% include "ga.html" %}
+{% endif %}
+
+</body>
+</html>

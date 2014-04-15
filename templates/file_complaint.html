@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="transactions">
+
+
+
+<div class="row">
+        <div class="col-xs-12 col-md-8">
+
+
+
+        <section>
+    <div class="page-header">
+    <h4 id="page-header">Transaction No #{{transaction.get_invoice_number}}</h4>
+    </div>
+
+
+    <div class="row show-grid">
+        <div class="col-md-6 leftside">Buyer</div>
+        <div class="col-md-6">{{transaction.buyer}}</div>
+      </div>
+
+
+    <div class="row show-grid">
+        <div class="col-md-6 leftside">Seller</div>
+        <div class="col-md-6">{{transaction.sender}}</div>
+      </div>
+
+         <div class="row show-grid">
+        <div class="col-md-6 leftside">Description</div>
+        <div class="col-md-6">{{transaction.condition_description}}</div>
+      </div>
+
+         <div class="row show-grid">
+        <div class="col-md-6 leftside">Document Required</div>
+        <div class="col-md-6">
+          {%if transaction.condition_document%}
+                  Yes
+                  {% else %}
+                  No
+                  {%endif%}
+        </div>
+      </div>
+
+
+        <div class="row show-grid">
+        <div class="col-md-6 leftside">Inspection period</div>
+        <div class="col-md-6">{{transaction.expires}}</div>
+      </div>
+
+
+    </section>
+
+
+  <section id="complaint">
+    <div class="page-header">
+    <h4 id="page-header">File Complaint</h4>
+    </div>
+
+ 
+      
+      <div class="bs-example">
+      <form role="form" class="form-horizontal">
+      
+
+
+    <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Describe the Complaint</label>
+    <div class="col-sm-10">
+    <textarea class="form-control" required="required"></textarea>
+    </div>
+    </div>
+    
+     <div class="form-group">
+     <label for="inputEmail3" class="col-sm-2 control-label">Add Any Supporting Documents</label>
+    <div class="col-sm-10">
+     <input type="file"  {%if transaction.condition_document%}required="required" {%endif%} > 
+    </div>
+    </div>
+
+    <div class="form-group">
+    <div class="col-sm-10">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </div>
+
+
+ 
+
+
+      </form>
+    </div>
+
+
+
+
+    </section>
+
+
+        </div>
+
+<!--
+
+        <div class="col-xs-6 col-md-4">
+          <div class="page-header">
+      <h4 id="page-header">History</h4>
+    </div>  
+
+        </div>
+   -->   
+
+      </div>
+
+
+<!--
+<table class="table">
+              <thead>
+                <tr>
+                  <th>#No</th>
+                  <th>My Role</th>
+                  <th>Buyer Email</th>
+                  <th>Seller Email</th>
+                  <th>Amount</th>
+                  <th>Description</th>
+                  <th>Document Required</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                  <td><a href="{{transaction.get_unique_url}}">{{transaction.get_invoice_number}}</a></td>
+                  <td>
+                  {%if transaction.is_sender%}
+                  Sender
+                  {% else %}
+                  Buyer
+                  {%endif%}
+                  </td>
+                  <td>{{transaction.buyer}}</td>
+                  <td>{{transaction.sender}}</td>
+                  <td>{{transaction.amount}}</td>
+                  <td>{{transaction.condition_description}}</td>
+                  <td>
+                  {%if transaction.condition_document%}
+                  Yes
+                  {% else %}
+                  No
+                  {%endif%}
+                  </td>
+                </tr>
+
+               
+
+              </tbody>
+            </table>
+-->
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-datepicker.js"></script>
+<link href="{{STATIC_URL}}css/datepicker3.css" media="screen" rel="stylesheet" type="text/css" /> 
+
+
+<div class="row escrowform">
+<form class="form-horizontal" role="form" method="POST">
+{% csrf_token %}
+<div class="page-header" style="text-align: center;">
+<h3>Start Escrow</h3>
+</div>
+
+ <div class="col-xs-12 col-md-12">
+{{errors}}
+
+  <input type="hidden" name="is_sender" value="1">
+  <!--
+   <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">I AM</label>
+    <div class="col-sm-10">
+      <select type="email" id="i_am" class="form-control" name="is_sender" placeholder="i am" required="required" onchange=whoIam(this,'{{ request.user.email }}')>
+      <option value=1>Sender</option>
+      <option value=0>Buyer</option>
+      </select>
+    </div>
+  </div>
+  -->
+
+  <input type="hidden" id="seller_email" class="form-control" name="sender" value="{{ request.user.email }}">
+<!--
+<div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Seller Email</label>
+    <div class="col-sm-10">
+      <input type="email" id="seller_email" class="form-control" name="sender" placeholder="Email" required="required" value="{{ request.user.email }}" readonly="readonly">
+    </div>
+  </div>
+-->
+
+<div class="col-sm-5">
+
+
+  <div class="form-group">
+    <label for="inputEmail3" class="control-label">Escrow name:</label>
+      <input type="email" id="buyer_email" class="form-control" name="title" placeholder="Type in Escrow name" required="required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="inputEmail3" class="control-label">Reciever email address:</label>
+      <input type="email" id="buyer_email" class="form-control" name="buyer" placeholder="email address" required="required">
+  </div>
+
+<div class="form-group">
+    <label for="inputEmail3" class="control-label">Reason for Escrow:</label>
+      <textarea class="form-control" name="condition_description" placeholder="something for remembering this escrow">
+      </textarea>
+  </div>
+
+
+
+<input type="hidden" class="form-control" name="escrower" value="{{escroweremail}}" placeholder="Email" required="required" readonly>
+
+
+
+
+<div class="form-group">
+    <label for="inputEmail3" class=" control-label">Amount of Bitcoins or Litecoins</label>
+    <div class="form-group">
+    <div class="col-sm-4">
+<select id="id_currency" name="currency" class="form-control">
+<option value="BTC">Bitcoin</option>
+<option value="LTC">Litecoin</option>
+</select>
+    </div> 
+    <div class="col-sm-8">
+      <input type="decimal" class="form-control" name="amount"  placeholder="Enter Amount" required="required">
+    </div>
+  </div>
+  </div>
+  
+
+<div class="form-group">
+    <div class="col-sm-11">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="name_verification" > Name verification by EscrowCoins.com (optional) <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-11">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="encypt_emails" > Encrypted Emails <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-11">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"  onclick=$('#time_limit').slideToggle();> Encrow Time Limit (optional) <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+<div class="form-group" id="time_limit" style="display:none;">
+    <div class="col-sm-10">
+      
+      <!--
+      <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" class="form-control" name="expires" id="expires">
+      <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  -->
+
+    <div class="input-group date" id="dp3" data-date="{{date_today}}" data-date-format="mm-dd-yyyy">
+      <input class="form-control" type="text"  value="{{ date_today }}" name="expires" readonly>
+      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="col-sm-offset-1 col-sm-6">
+
+<div class="additional_escrow_options">
+
+<div class="page-header">
+      <h4>Additional Escrow Options</h4>
+    </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Additional contact information <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Product/Service Details <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Delivery method <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Uresponsive party policy options <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Zip files with relevant images, text files, etc <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Other terms to help in case of dispute <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+<hr />
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="additional_info[]" > Save selected options for future Escrows <span class="glyphicon glyphicon-info-sign" rel="tooltip" data-placement="right" data-original-title="Additional contact information"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+<div class="who_pays_options">
+
+<div class="page-header">
+Who Pays the fee (required one of 3 options)
+    </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="who_pays[]" checked="checked"> Sender pays 1.5% escrow fee 
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="who_pays[]" > Receiver pays 1.5% escrow fee
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="who_pays[]" > Fee is split
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary form-control">Submit Transaction</button>
+    </div>
+  </div>
+
+
+</div>
+
+
+</form>
+</div>
+{% endblock %}
