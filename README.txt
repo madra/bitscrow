@@ -1,6 +1,6 @@
-EscrowCoins
+BitScrow
 =============================
-Secure Bitcoin and LiteCoin Escrow Service Written in Django
+Secure N-M   Bitcoin and LiteCoin Escrow Service Written in Django
 Builtin MailGun and Analytics Support
 
 Requirements for Webescrow app

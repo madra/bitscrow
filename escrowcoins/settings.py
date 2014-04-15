@@ -6,7 +6,7 @@ import django.conf.global_settings as DEFAULT_SETTINGS
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 LOCALHOST = False
-APP_NAME ='Escrowcoins'
+APP_NAME ='BitScrow'
 SERVER_HOST = 'localhost'
 
 
@@ -223,9 +223,9 @@ MAILGUN_SERVER_NAME = ''
 MAILGUN_ACCESS_LINK = ''
 
 
-ESCROW_SENDER = "escrowcoins@escrowcoins.com"
+ESCROW_SENDER = ""
 ESCROWER_EMAIL = "madradavid@gmail.com"
-ESCROW_SUBJECT = "Bitcoin N-M escrow"
+ESCROW_SUBJECT = "Escrowcoins N-M escrow"
 
 # Localhost settings
 try:
